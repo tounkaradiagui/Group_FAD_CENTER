@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -25,6 +26,14 @@ class Post extends Model
         "user_id"
     ];
 
+    // protected $casts = [
+    //     'published_at' => 'datetime'
+    // ];
+
+    // public function formattedDate()
+    // {
+    //     return $this->published_at->format('F jS Y');
+    // }
 
     public function user(): BelongsTo
     {
@@ -34,5 +43,10 @@ class Post extends Model
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function shortBody():string
+    {
+        return Str::words(strip_tags($this->body), 30);
     }
 }
