@@ -17,7 +17,7 @@ class PostController extends Controller
                         ->where('published_at', '!=', "")
                         ->whereDate('published_at', '<', Carbon::now())
                         ->orderBy('published_at', 'desc')
-                        ->get();
+                        ->paginate(5);
         // $category = $posts->categories;
         // $categoryItem = $category->title;
         return view('home', compact('posts'));

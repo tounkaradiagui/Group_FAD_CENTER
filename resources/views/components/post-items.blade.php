@@ -2,7 +2,7 @@
     <!-- Nothing in life is to be feared, it is only to be understood. Now is the time to understand more, so that we may fear less. - Marie Curie -->
     <!-- Article Image -->
     <a href="#" class="hover:opacity-75">
-        <img src="/storage/{{$post->thumbnail}}">
+        <img src="{{$post->getThumbnail()}}">
     </a>
     <div class="bg-white flex flex-col justify-start p-6">
         @foreach ($post->categories as $category )
